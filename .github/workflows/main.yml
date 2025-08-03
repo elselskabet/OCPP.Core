@@ -1,0 +1,20 @@
+name: Publish via Web Deploy to smarterasp.net
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  checkout_publish_and_deploy:
+    name: Checkout, Publish and Deploy to SmarterASP.NET
+    runs-on: windows-latest
+    steps:
+      - name: Deploy to SmarterASP.NET
+        uses: aarhusit/deploy@main
+        with:
+          csproj-filepath:      OCPP.Core\OCPP.Core.Server\OCPP.Core.Server.csproj
+          website-name:         aarhusit-001-subsite16
+          server-computer-name: https://win6050.site4now.net:8172
+          server-username:      aarhusit-001
+          server-password:      ${{secrets.PASSWORD}}
